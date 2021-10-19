@@ -10,4 +10,9 @@ class Ship
   def health
     @length
   end
+
+  def hit
+    require "pry"; binding.pry
+    self.health - 1
+  end
 end
