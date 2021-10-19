@@ -1,18 +1,23 @@
 class Ship
   attr_reader :name,
-              :length
+              :length,
+              :health
+
 
   def initialize(name, length)
     @name = name
     @length = length
+    @health = @length
   end
 
-  def health
-    @length
-  end
+
 
   def hit
-    require "pry"; binding.pry
-    self.health - 1
+    @health -= 1
   end
+
+  def sunk?
+    @health == 0
+  end
+
 end
