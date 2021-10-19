@@ -12,7 +12,7 @@ class Cell
   end
 
   def place_ship(ship_instance)
-    @ship = ship_instance 
+    @ship = ship_instance
   end
 
 end
