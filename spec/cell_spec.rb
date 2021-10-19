@@ -42,5 +42,12 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to eq(true)
   end
 
+  it '#render' do
+
+    expect(@cell.render).to eq(".")
+    @cell.fire_upon
+    expect(@cell.render).to eq("M")
+  end
+
 
 end
