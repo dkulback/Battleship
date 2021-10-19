@@ -25,9 +25,14 @@ RSpec.describe Cell do
 
   it '#place_ship' do
     @cell.place_ship(@cruiser)
-
+    require "pry"; binding.pry
     expect(@cell.ship).to eq(@cruiser)
     expect(@cell.empty?).to eq(false)
+  end
+
+  it '#fired_upon' do
+    
+    expect(@cell.fired_upon).to eq(false)
   end
 
 

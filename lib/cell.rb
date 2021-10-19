@@ -14,5 +14,5 @@ class Cell
   def place_ship(ship_instance)
     @ship = ship_instance
   end
-# fired upon method 
+
 end
