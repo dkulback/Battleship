@@ -21,7 +21,7 @@ class Cell
   end
 
   def fire_upon
-    if @ship != nil && fired_upon? == false
+    if empty? == false && fired_upon? == false
       @ship.hit
     end
     @cell_hit_on = true
