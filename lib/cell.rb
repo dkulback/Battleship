@@ -27,11 +27,13 @@ class Cell
     @cell_hit_on = true
   end
 
-  def render
+  def render(ship_show = false)
     if @cell_hit_on == false && !@ship
       "."
     elsif @cell_hit_on == true && !@ship
       "M"
+    elsif @cell_hit_on == false && @ship && ship_show == true
+      "S"
     end
   end
 end
