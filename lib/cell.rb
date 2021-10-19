@@ -24,6 +24,6 @@ class Cell
     if empty? == false && fired_upon? == false
       @ship.hit
       @cell_hit_on = true
-      end
+    end
   end
 end
