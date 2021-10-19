@@ -25,7 +25,6 @@ RSpec.describe Cell do
 
   it '#place_ship' do
     @cell.place_ship(@cruiser)
-
     expect(@cell.ship).to eq(@cruiser)
     expect(@cell.empty?).to eq(false)
   end
