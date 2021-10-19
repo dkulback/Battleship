@@ -29,14 +29,18 @@ RSpec.describe Cell do
     expect(@cell.empty?).to eq(false)
   end
 
-  it '#fired_upon' do
-
-    expect(@cell.fired_upon).to eq(false)
+  it '#fired_upon?' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.fired_upon?).to eq(false)
   end
 
+  it '#fire_upon' do
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
 
-
-
+    expect(@cell.ship.health).to eq(2)
+    expect(@cell.fired_upon?).to eq(true)
+  end
 
 
 end
