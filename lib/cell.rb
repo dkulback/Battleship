@@ -23,7 +23,22 @@ class Cell
   def fire_upon
     if empty? == false && fired_upon? == false
       @ship.hit
-      @cell_hit_on = true
     end
+    @cell_hit_on = true
+  end
+
+  def render(ship_show = false)
+    if @cell_hit_on == false && !@ship
+      "."
+    elsif @cell_hit_on == true && !@ship
+      "M"
+    elsif @cell_hit_on == false && @ship && ship_show == true
+      "S"
+    elsif @cell_hit_on == true && @ship && !@ship.sunk?
+      "H"
+    elsif @ship.sunk?
+      "X"
+    end
+
   end
 end

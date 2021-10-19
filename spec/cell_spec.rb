@@ -5,6 +5,7 @@ RSpec.describe Cell do
   before :each do
     @cell = Cell.new("B4")
     @cruiser = Ship.new("Cruiser", 3)
+    @cell_2 = Cell.new("C3")
   end
 
   it 'exists' do
@@ -42,5 +43,34 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to eq(true)
   end
 
+  describe '#render' do
 
+    it 'renders a .' do
+      expect(@cell.render).to eq(".")
+    end
+
+    it 'renders a M' do
+      @cell.fire_upon
+      expect(@cell.render).to eq("M")
+    end
+
+    it 'renders a S' do
+      @cell_2.place_ship(@cruiser)
+      expect(@cell_2.render(true)).to eq("S")
+    end
+
+    it 'renders a H' do
+      @cell_2.place_ship(@cruiser)
+      @cell_2.fire_upon
+      expect(@cell_2.render).to eq("H")
+    end
+
+    it 'renders a X' do
+      @cell_2.place_ship(@cruiser)
+      @cell_2.fire_upon
+      @cruiser.hit
+      @cruiser.hit
+      expect(@cell_2.render).to eq("X")
+    end
+  end
 end
