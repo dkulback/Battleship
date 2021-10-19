@@ -22,4 +22,14 @@ RSpec.describe Ship do
     @cruiser.hit
     expect(@cruiser.health).to eq(2)
   end
+
+  it '#sunk?' do
+    @cruiser.hit
+    expect(@cruiser.sunk?).to eq(false)
+    @cruiser.hit
+    @cruiser.hit
+    expect(@cruiser.sunk?).to eq(true)
+  end
+
+
 end
