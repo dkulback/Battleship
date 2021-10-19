@@ -43,18 +43,34 @@ RSpec.describe Cell do
     expect(@cell.fired_upon?).to eq(true)
   end
 
-  it '#render' do
+  describe '#render' do
 
-    expect(@cell.render).to eq(".")
+    it 'renders a .' do
+      expect(@cell.render).to eq(".")
+    end
 
-    @cell.fire_upon
-    expect(@cell.render).to eq("M")
+    it 'renders a M' do
+      @cell.fire_upon
+      expect(@cell.render).to eq("M")
+    end
 
-    expect(@cell_2.render).to eq(".")
-    @cell_2.place_ship(@cruiser)
+    it 'renders a S' do
+      @cell_2.place_ship(@cruiser)
+      expect(@cell_2.render(true)).to eq("S")
+    end
 
-    expect(@cell_2.render(true)).to eq("S")
+    it 'renders a H' do
+      @cell_2.place_ship(@cruiser)
+      @cell_2.fire_upon
+      expect(@cell_2.render).to eq("H")
+    end
+
+    it 'renders a X' do
+      @cell_2.place_ship(@cruiser)
+      @cell_2.fire_upon
+      @cruiser.hit
+      @cruiser.hit
+      expect(@cell_2.render).to eq("X")
+    end
   end
-
-
 end

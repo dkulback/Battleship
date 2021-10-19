@@ -34,6 +34,11 @@ class Cell
       "M"
     elsif @cell_hit_on == false && @ship && ship_show == true
       "S"
+    elsif @cell_hit_on == true && @ship && !@ship.sunk?
+      "H"
+    elsif @ship.sunk?
+      "X"
     end
+
   end
 end
