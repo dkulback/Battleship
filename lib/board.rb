@@ -2,18 +2,12 @@ class Board
   attr_reader :cells
 
   def initialize
-    @cells = Hash.new { |h, k, v| h[k] = Cell.new }
+    @cells = {}
   end
 
-  def create_cells
-    cell_letters = ['A', 'B', 'C', 'D']
-    cell_numbers = ['1', '2', '3', '4']
-
-    cell_hash = cell_letters.each do |letter|
-      cell_numbers.each do |number|
-        @cells["#{letter}#{number}"] = Cell.new("#{letter}#{number}")
-      end
-    end
-    cell_hash
+  def create_cells(place)
+    new_cell = Cell.new(place)
+    @cells[new_cell.coordinate] = new_cell
+    new_cell
   end
 end
