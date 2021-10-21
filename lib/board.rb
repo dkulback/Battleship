@@ -2,7 +2,7 @@ class Board
   attr_reader :cells
 
   def initialize
-    @cells = Hash.new { |h, k, v| h[k] = Cell.new }
+    @cells = {}
   end
 
   def create_cells

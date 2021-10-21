@@ -34,5 +34,6 @@ RSpec.describe Board do
  "D4" => Cell.new('D4')
 }
     expect(@board.cells).to eq(expected)
+    #expect(@board.cells['A1']).to have_attributes(:coordinate => 'A1', :ship => nil, :cell_hit_on => false)
   end
 end
