@@ -28,42 +28,10 @@ RSpec.describe Board do
   end
 
   it '#create_cells' do
-    @board.create_cells("A1")
-    @board.create_cells("A2")
-    @board.create_cells("A3")
-    @board.create_cells("A4")
-    @board.create_cells("B1")
-    @board.create_cells("B2")
-    @board.create_cells("B3")
-    @board.create_cells("B4")
-    @board.create_cells("C1")
-    @board.create_cells("C2")
-    @board.create_cells("C3")
-    @board.create_cells("C4")
-    @board.create_cells("D1")
-    @board.create_cells("D2")
-    @board.create_cells("D3")
-    @board.create_cells("D4")
 
 
-    expected = {
- "A1" => @cell_1,
- "A2" => @cell_2,
- "A3" => @cell_3,
- "A4" => @cell_4,
- "B1" => @cell_5,
- "B2" => @cell_6,
- "B3" => @cell_7,
- "B4" => @cell_8,
- "C1" => @cell_9,
- "C2" => @cell_10,
- "C3" => @cell_11,
- "C4" => @cell_12,
- "D1" => @cell_13,
- "D2" => @cell_14,
- "D3" => @cell_15,
- "D4" => @cell_16
-}
-    expect(@board.cells).to include(expected)
+
+
+    expect(@board.create_cells("A1")).to be_an_instance_of(Cell)
   end
 end
