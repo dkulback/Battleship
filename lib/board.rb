@@ -28,4 +28,21 @@ class Board
     end
   end
 
+  def split_array(ship_array)
+    ship_array.map do |each_coordinate|
+      each_coordinate.chars
+    end
+
+  end
+
+  def valid_placement?(ship, placement)
+
+    ship.length == placement.length && split_array(placement)
+    require "pry"; binding.pry
+
+
+
+  end
+
+
 end

@@ -6,6 +6,8 @@ RSpec.describe Board do
   before :each do
     @board = Board.new
     @cell = Cell.new("A1")
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
   end
 
   it 'exists' do
@@ -24,4 +26,15 @@ RSpec.describe Board do
     expect(@board.valid_coordinate?("E1")).to eq(false)
     expect(@board.valid_coordinate?("A22")).to eq(false)
   end
+
+  describe '#valid_placement' do
+    it 'return a valid placed ship' do
+
+      expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
+      expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to be(false)
+    end
+  end
+
+
+
 end
