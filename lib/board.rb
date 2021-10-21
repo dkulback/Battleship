@@ -10,9 +10,7 @@ class Board
     cell_numbers = ['1', '2', '3', '4']
 
     cell_hash = cell_letters.each do |letter|
-      letter
       cell_numbers.each do |number|
-        number
         @cells["#{letter}#{number}"] = Cell.new("#{letter}#{number}")
       end
     end
