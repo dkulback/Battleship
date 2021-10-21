@@ -16,4 +16,6 @@ class Board
     end
     cell_hash
   end
+
+  
 end
