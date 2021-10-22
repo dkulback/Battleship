@@ -69,6 +69,7 @@ RSpec.describe Board do
       expect(cell_2.ship).to eq(@cruiser)
       expect(cell_3.ship).to eq(@cruiser)
       expect(cell_4.ship).to eq(nil)
+      expect(cell_3.ship).to eq(cell_2.ship)
     end
   end
 
