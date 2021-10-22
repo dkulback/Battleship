@@ -20,12 +20,41 @@ class Board
     "D4" => Cell.new('D4')}
   end
 
-
   def valid_coordinate?(coordinate_check)
     ## The '.any?' method returns true if at least 1 of the collection elements is equal to whatever you put in as the argument
     @cells.keys.any? do |key|
       key == coordinate_check
     end
+  end
+
+  def split_array(ship_array)
+    ship_array.map do |each_coordinate|
+      each_coordinate.chars
+    end
+  end
+
+  def horizontal_check(already_char_array)
+    if already_char_array.length == 2
+      (already_char_array[1][1]).to_i == (already_char_array[0][1]).to_i + 1
+    elsif already_char_array.length == 3
+      (already_char_array[1][1]).to_i == ((already_char_array[0][1]).to_i + 1) && (already_char_array[2][1]).to_i == ((already_char_array[1][1]).to_i + 1)
+    end
+  end
+
+  def vertical_check(already_char_array)
+    if already_char_array.length == 2
+      (already_char_array[1][0]).ord == (already_char_array[0][0]).ord + 1
+    elsif already_char_array.length == 3
+      (already_char_array[1][0]).ord == ((already_char_array[0][0]).ord + 1) && (already_char_array[2][0]).ord == ((already_char_array[1][0]).ord + 1)
+    end 
+  end
+
+  def valid_placement?(ship, placement)
+    placement_chared = split_array(placement)
+    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared))
+
+    # array_of_coordinates_split = split_array(placement)
+    # array_of_coordinates_split
   end
 
 end
