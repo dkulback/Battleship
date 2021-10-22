@@ -20,7 +20,6 @@ class Board
     "D4" => Cell.new('D4')}
   end
 
-
   def valid_coordinate?(coordinate_check)
     ## The '.any?' method returns true if at least 1 of the collection elements is equal to whatever you put in as the argument
     @cells.keys.any? do |key|
@@ -28,20 +27,8 @@ class Board
     end
   end
 
-  def split_array(ship_array)
-    ship_array.map do |each_coordinate|
-      each_coordinate.chars
-    end
-
-  end
-
   def valid_placement?(ship, placement)
-
-    ship.length == placement.length && split_array(placement)
-    require "pry"; binding.pry
-
-
-
+    ship.length == placement
   end
 
 
