@@ -64,9 +64,12 @@ RSpec.describe Board do
       cell_1 = @board.cells["A1"]
       cell_2 = @board.cells["A2"]
       cell_3 = @board.cells["A3"]
+      cell_4 = @board.cells["A4"]
       expect(cell_1.ship).to eq(@cruiser)
-  
-  end
+      expect(cell_2.ship).to eq(@cruiser)
+      expect(cell_3.ship).to eq(@cruiser)
+      expect(cell_4.ship).to eq(nil)
+    end
   end
 
 

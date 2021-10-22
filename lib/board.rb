@@ -58,9 +58,24 @@ class Board
   end
 
   def place(ship, position)
-    if @cells["A1"].coordinate == position[0]
-      @cells["A1"].place_ship(ship)
+    @cells.keys.select do |key|
+      position.each do |pos|
+        if pos == key
+          @cells[key].place_ship(ship)
+        end
+      end
     end
+
+
+
+
+
+
+
+
+    # if @cells["A1"].coordinate == position[0]
+    #   @cells["A1"].place_ship(ship)
+    # end
 
   end
 
