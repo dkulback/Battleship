@@ -46,7 +46,7 @@ class Board
       (already_char_array[1][0]).ord == (already_char_array[0][0]).ord + 1
     elsif already_char_array.length == 3
       (already_char_array[1][0]).ord == ((already_char_array[0][0]).ord + 1) && (already_char_array[2][0]).ord == ((already_char_array[1][0]).ord + 1)
-    end 
+    end
   end
 
   def valid_placement?(ship, placement)
@@ -56,5 +56,29 @@ class Board
     # array_of_coordinates_split = split_array(placement)
     # array_of_coordinates_split
   end
+
+  def place(ship, position)
+    @cells.keys.select do |key|
+      position.each do |pos|
+        if pos == key
+          @cells[key].place_ship(ship)
+        end
+      end
+    end
+
+
+
+
+
+
+
+
+    # if @cells["A1"].coordinate == position[0]
+    #   @cells["A1"].place_ship(ship)
+    # end
+
+  end
+
+
 
 end
