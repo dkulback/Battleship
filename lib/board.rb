@@ -42,13 +42,16 @@ class Board
   end
 
   def vertical_check(already_char_array)
-    range = "A".."D"
-    letters_array = range._to_a
+    if already_char_array.length == 2
+      (already_char_array[1][0]).ord == (already_char_array[0][0]).ord + 1
+    elsif already_char_array.length == 3
+      (already_char_array[1][0]).ord == ((already_char_array[0][0]).ord + 1) && (already_char_array[2][0]).ord == ((already_char_array[1][0]).ord + 1)
+    end 
   end
 
   def valid_placement?(ship, placement)
     placement_chared = split_array(placement)
-    ship.length == placement.length && horizontal_check(placement_chared)
+    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared))
 
     # array_of_coordinates_split = split_array(placement)
     # array_of_coordinates_split

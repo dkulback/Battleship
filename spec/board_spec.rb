@@ -44,10 +44,10 @@ RSpec.describe Board do
 
     it 'vertical_check' do
       example_1 = [["A", "1"], ["B", "1"]]
-      example_2 = [["A", "1"], ["B", "2"], ["C", "3"]]
+      example_2 = [["A", "1"], ["B", "1"], ["D", "1"]]
 
-      expect(@board.horizontal_check(example_1)).to eq(true)
-      expect(@board.horizontal_check(example_2)).to eq(false)
+      expect(@board.vertical_check(example_1)).to eq(true)
+      expect(@board.vertical_check(example_2)).to eq(false)
     end
 
     xit 'checks if coordinates are consecutive' do
