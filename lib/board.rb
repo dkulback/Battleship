@@ -33,19 +33,19 @@ class Board
     end
   end
 
-  def horizontal_check(already_char_array)
-    if already_char_array.length == 2
-      (already_char_array[1][1]).to_i == (already_char_array[0][1]).to_i + 1
-    elsif already_char_array.length == 3
-      (already_char_array[1][1]).to_i == ((already_char_array[0][1]).to_i + 1) && (already_char_array[2][1]).to_i == ((already_char_array[1][1]).to_i + 1)
+  def horizontal_check(placement_char_array)
+    if placement_char_array.length == 2
+      (placement_char_array[1][1]).to_i == (placement_char_array[0][1]).to_i + 1
+    elsif placement_char_array.length == 3
+      (placement_char_array[1][1]).to_i == ((placement_char_array[0][1]).to_i + 1) && (placement_char_array[2][1]).to_i == ((placement_char_array[1][1]).to_i + 1)
     end
   end
 
-  def vertical_check(already_char_array)
-    if already_char_array.length == 2
-      (already_char_array[1][0]).ord == (already_char_array[0][0]).ord + 1
-    elsif already_char_array.length == 3
-      (already_char_array[1][0]).ord == ((already_char_array[0][0]).ord + 1) && (already_char_array[2][0]).ord == ((already_char_array[1][0]).ord + 1)
+  def vertical_check(placement_char_array)
+    if placement_char_array.length == 2
+      (placement_char_array[1][0]).ord == (placement_char_array[0][0]).ord + 1
+    elsif placement_char_array.length == 3
+      (placement_char_array[1][0]).ord == ((placement_char_array[0][0]).ord + 1) && (placement_char_array[2][0]).ord == ((placement_char_array[1][0]).ord + 1)
     end
   end
 
