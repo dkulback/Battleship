@@ -52,7 +52,7 @@ class Board
   def valid_placement?(ship, placement)
     placement_chared = split_array(placement)
 
-    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && ((horizontal_check(placement_chared) || vertical_check(placement_chared)) == false) && (placement.all? {|coordinate| @cells[coordinate].ship == nil})
+    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && ((horizontal_check(placement_chared) || vertical_check(placement_chared)) == false) && (placement.all? {|coordinate| @cells[coordinate].empty?})
   end
 
   def place(ship, position)
