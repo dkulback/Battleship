@@ -42,7 +42,15 @@ RSpec.describe Board do
       expect(@board.horizontal_check(example_2)).to eq(false)
     end
 
-    it 'checks if coordinates are consecutive' do
+    it 'vertical_check' do
+      example_1 = [["A", "1"], ["B", "1"]]
+      example_2 = [["A", "1"], ["B", "2"], ["C", "3"]]
+
+      expect(@board.horizontal_check(example_1)).to eq(true)
+      expect(@board.horizontal_check(example_2)).to eq(false)
+    end
+
+    xit 'checks if coordinates are consecutive' do
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to be(false)
       expect(@board.valid_placement?(@submarine, ["A1", "B2"])).to be(false)
       # expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to be(false)

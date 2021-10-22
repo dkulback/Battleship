@@ -44,8 +44,7 @@ class Board
 
   def vertical_check(already_char_array)
     range = "A".."D"
-    letters_array = range.to_a
-    require "pry"; binding.pry
+    letters_array = range._to_a
   end
 
   def valid_placement?(ship, placement)
