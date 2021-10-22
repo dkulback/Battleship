@@ -33,28 +33,26 @@ class Board
     end
   end
 
-  def horizontal_check(already_char_array)
-    if already_char_array.length == 2
-      (already_char_array[1][1]).to_i == (already_char_array[0][1]).to_i + 1
-    elsif already_char_array.length == 3
-      (already_char_array[1][1]).to_i == ((already_char_array[0][1]).to_i + 1) && (already_char_array[2][1]).to_i == ((already_char_array[1][1]).to_i + 1)
+  def horizontal_check(placement_char_array)
+    if placement_char_array.length == 2
+      (placement_char_array[1][1]).to_i == (placement_char_array[0][1]).to_i + 1
+    elsif placement_char_array.length == 3
+      (placement_char_array[1][1]).to_i == ((placement_char_array[0][1]).to_i + 1) && (placement_char_array[2][1]).to_i == ((placement_char_array[1][1]).to_i + 1)
     end
   end
 
-  def vertical_check(already_char_array)
-    if already_char_array.length == 2
-      (already_char_array[1][0]).ord == (already_char_array[0][0]).ord + 1
-    elsif already_char_array.length == 3
-      (already_char_array[1][0]).ord == ((already_char_array[0][0]).ord + 1) && (already_char_array[2][0]).ord == ((already_char_array[1][0]).ord + 1)
+  def vertical_check(placement_char_array)
+    if placement_char_array.length == 2
+      (placement_char_array[1][0]).ord == (placement_char_array[0][0]).ord + 1
+    elsif placement_char_array.length == 3
+      (placement_char_array[1][0]).ord == ((placement_char_array[0][0]).ord + 1) && (placement_char_array[2][0]).ord == ((placement_char_array[1][0]).ord + 1)
     end
   end
 
   def valid_placement?(ship, placement)
     placement_chared = split_array(placement)
-    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared))
 
-    # array_of_coordinates_split = split_array(placement)
-    # array_of_coordinates_split
+    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && ((horizontal_check(placement_chared) || vertical_check(placement_chared)) == false) && (placement.all? {|coordinate| @cells[coordinate].empty?})
   end
 
   def place(ship, position)
@@ -65,20 +63,5 @@ class Board
         end
       end
     end
-
-
-
-
-
-
-
-
-    # if @cells["A1"].coordinate == position[0]
-    #   @cells["A1"].place_ship(ship)
-    # end
-
   end
-
-
-
 end
