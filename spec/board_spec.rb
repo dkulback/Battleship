@@ -27,10 +27,34 @@ RSpec.describe Board do
     expect(@board.valid_coordinate?("A22")).to eq(false)
   end
 
-  describe '#valid_placement?' do
-    it 'returns false if ship length less than ship' do
-      expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A3"])).to be(false)
+  describe '#valid_placement' do
+    it 'checks if ship length is valid' do
+
+      expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
       expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to be(false)
+    end
+
+    it '#horizontal_check' do
+      example_1 = [["A", "1"], ["A", "2"]]
+      example_2 = [["A", "1"], ["A", "2"], ["A", "4"]]
+
+      expect(@board.horizontal_check(example_1)).to eq(true)
+      expect(@board.horizontal_check(example_2)).to eq(false)
+    end
+
+    it 'vertical_check' do
+      example_1 = [["A", "1"], ["B", "1"]]
+      example_2 = [["A", "1"], ["B", "2"], ["C", "3"]]
+
+      expect(@board.horizontal_check(example_1)).to eq(true)
+      expect(@board.horizontal_check(example_2)).to eq(false)
+    end
+
+    xit 'checks if coordinates are consecutive' do
+      expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to be(false)
+      expect(@board.valid_placement?(@submarine, ["A1", "B2"])).to be(false)
+      # expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to be(false)
+      # expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to be(false)
     end
   end
 
