@@ -32,17 +32,28 @@ class Board
     ship_array.map do |each_coordinate|
       each_coordinate.chars
     end
+  end
 
+  def horizontal_check(already_char_array)
+    if already_char_array.length == 2
+      (already_char_array[1][1]).to_i == (already_char_array[0][1]).to_i + 1
+    elsif already_char_array.length == 3
+      (already_char_array[1][1]).to_i == ((already_char_array[0][1]).to_i + 1) && (already_char_array[2][1]).to_i == ((already_char_array[1][1]).to_i + 1)
+    end
+  end
+
+  def vertical_check(already_char_array)
+    range = "A".."D"
+    letters_array = range.to_a
+    require "pry"; binding.pry
   end
 
   def valid_placement?(ship, placement)
+    placement_chared = split_array(placement)
+    ship.length == placement.length && horizontal_check(placement_chared)
 
-    ship.length == placement.length && split_array(placement)
-    require "pry"; binding.pry
-
-
-
+    # array_of_coordinates_split = split_array(placement)
+    # array_of_coordinates_split
   end
-
 
 end
