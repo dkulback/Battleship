@@ -59,7 +59,7 @@ class Board
       position.each do |coordinate|
         @cells[coordinate].place_ship(ship)
       end
-
+    ##### CHECK BELOW METHOD**************************************
     # if valid_placement?(ship, position) == true
     #   @cells.keys.select do |key|
     #     position.any? do |pos|

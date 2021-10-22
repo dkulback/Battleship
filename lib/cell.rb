@@ -39,6 +39,5 @@ class Cell
     elsif @ship.sunk?
       "X"
     end
-
   end
 end
