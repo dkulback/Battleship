@@ -28,7 +28,9 @@ class Cell
   end
 
   def render(ship_show = false)
-    if @cell_hit_on == false && !@ship
+    if @cell_hit_on == false && ship_show == false
+      "."
+    elsif empty? && !fired_upon?
       "."
     elsif @cell_hit_on == true && !@ship
       "M"
@@ -36,8 +38,9 @@ class Cell
       "S"
     elsif @cell_hit_on == true && @ship && !@ship.sunk?
       "H"
-    elsif @ship.sunk?
+    elsif !empty? && @ship.sunk? && @cell_hit_on
       "X"
     end
   end
+
 end
