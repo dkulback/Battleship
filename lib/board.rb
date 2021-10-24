@@ -73,14 +73,12 @@ class Board
   def fire(coord)
     @cells.keys.select do |key|
       if key == coord && @cells[key].fired_upon? == false
-      @cells[key].fire_upon
+        @cells[key].fire_upon
       end
     end
   end
 
     def render(ship = false)
-    board_render =
     "  1 2 3 4 \nA #{@cells["A1"].render(ship)} #{@cells["A2"].render(ship)} #{@cells["A3"].render(ship)} #{@cells["A4"].render(ship)} \nB #{@cells["B1"].render(ship)} #{@cells["B2"].render(ship)} #{@cells["B3"].render(ship)} #{@cells["B4"].render(ship)} \nC #{@cells["C1"].render(ship)} #{@cells["C2"].render(ship)} #{@cells["C3"].render(ship)} #{@cells["C4"].render(ship)} \nD #{@cells["D1"].render(ship)} #{@cells["D2"].render(ship)} #{@cells["D3"].render(ship)} #{@cells["D4"].render(ship)} \n"
   end
-
 end

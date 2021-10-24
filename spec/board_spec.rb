@@ -89,9 +89,6 @@ RSpec.describe Board do
       it 'fires on a coordinate' do
         @board.place(@cruiser, ["A1", "A2", "A3"])
         cell_1 = @board.cells["A1"]
-        cell_2 = @board.cells["A2"]
-        cell_3 = @board.cells["A3"]
-        cell_4 = @board.cells["A4"]
         @board.fire("A1")
       expect(cell_1.fired_upon?).to be(true)
       expect(cell_1.ship.health).to eq(2)
@@ -112,10 +109,6 @@ RSpec.describe Board do
 
     it 'renders board with hits and misses and sunken ships' do
       @board.place(@cruiser, ["A1", "A2", "A3"])
-      cell_1 = @board.cells["A1"]
-      cell_2 = @board.cells["A2"]
-      cell_3 = @board.cells["A3"]
-      cell_4 = @board.cells["A4"]
       @board.fire("A1")
       expect(@board.render).to eq("  1 2 3 4 \nA H . . . \nB . . . . \nC . . . . \nD . . . . \n")
 
@@ -124,14 +117,12 @@ RSpec.describe Board do
 
       @board.fire("A2")
       @board.fire("A3")
-
       expect(@board.render).to eq("  1 2 3 4 \nA X X X M \nB . . . . \nC . . . . \nD . . . . \n")
+
       @board.place(@submarine, ["B1", "B2"])
       @board.fire("B1")
       @board.fire("B3")
       expect(@board.render).to eq("  1 2 3 4 \nA X X X M \nB H . M . \nC . . . . \nD . . . . \n")
     end
-
-
   end
 end
