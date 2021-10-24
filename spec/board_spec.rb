@@ -76,7 +76,6 @@ RSpec.describe Board do
       cell_2 = @board.cells["A2"]
       cell_3 = @board.cells["A3"]
       cell_4 = @board.cells["A4"]
-
       expect(cell_1.ship).to eq(@cruiser)
       expect(cell_2.ship).to eq(@cruiser)
       expect(cell_3.ship).to eq(@cruiser)
@@ -85,6 +84,19 @@ RSpec.describe Board do
       expect(cell_3.ship).to eq(cell_2.ship)
     end
   end
+
+    describe '#fire' do
+      it 'fires on a coordinate' do
+        @board.place(@cruiser, ["A1", "A2", "A3"])
+        cell_1 = @board.cells["A1"]
+        cell_2 = @board.cells["A2"]
+        cell_3 = @board.cells["A3"]
+        cell_4 = @board.cells["A4"]
+        @board.fire("A1")
+      expect(cell_1.fired_upon?).to be(true)
+      expect(cell_1.ship.health).to eq(2)
+      end
+    end
 
   describe '#render' do
     it 'renders player board' do

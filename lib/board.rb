@@ -1,3 +1,4 @@
+require 'pry'
 class Board
   attr_reader :cells
 
@@ -21,6 +22,8 @@ class Board
     "D4" => Cell.new('D4')
   }
   end
+
+
 
   def valid_coordinate?(coordinate_check)
     ## The '.any?' method returns true if at least 1 of the collection elements is equal to whatever you put in as the argument
@@ -67,6 +70,13 @@ class Board
     end
   end
 
+  def fire(coord)
+    @cells.keys.select do |key|
+      if key == coord && @cells[key].fired_upon? == false
+      @cells[key].fire_upon
+      end
+    end
+  end
 
     def render(ship = false)
 
