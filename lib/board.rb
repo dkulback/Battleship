@@ -66,7 +66,7 @@ class Board
     if diagonal_check(placement_chared) == false
       false
     elsif diagonal_check(placement_chared) == true
-      (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && (placement.all? {|coordinate| @cells[coordinate].empty?})
+      (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && (placement.all? {|coordinate| valid_coordinate?(coordinate) && @cells[coordinate].empty?})
     end
   end
 

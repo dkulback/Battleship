@@ -83,4 +83,9 @@ class Game
   end
   @computer_board.place(@submarine, comp_sub)
   end
+
+  def turn
+
+
+  end
 end
