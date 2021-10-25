@@ -1,7 +1,7 @@
 require './lib/ship'
 require './lib/board'
 
-class Computer
+class Game
   attr_reader :player_board,
               :computer_board,
               :cruiser,

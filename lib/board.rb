@@ -23,8 +23,6 @@ class Board
   }
   end
 
-
-
   def valid_coordinate?(coordinate_check)
     ## The '.any?' method returns true if at least 1 of the collection elements is equal to whatever you put in as the argument
     @cells.keys.any? do |key|
@@ -40,7 +38,7 @@ class Board
 
   def horizontal_check(placement_char_array)
     if placement_char_array.length == 2
-      (placement_char_array[1][1]).to_i == (placement_char_array[0][1]).to_i + 1
+      ((placement_char_array[1][1]).to_i == (placement_char_array[0][1]).to_i + 1)
     elsif placement_char_array.length == 3
       (placement_char_array[1][1]).to_i == ((placement_char_array[0][1]).to_i + 1) && (placement_char_array[2][1]).to_i == ((placement_char_array[1][1]).to_i + 1)
     end
@@ -54,10 +52,22 @@ class Board
     end
   end
 
+  def diagonal_check(placement_char_array)
+    if placement_char_array.length == 2
+      placement_char_array[0][1] == placement_char_array[1][1] || placement_char_array[0][0] == placement_char_array[1][0]
+    elsif placement_char_array.length == 3
+        ((placement_char_array[0][1] == placement_char_array[1][1]) && (placement_char_array[0][1] == placement_char_array[2][1])) || ((placement_char_array[0][0] == placement_char_array[1][0]) && (placement_char_array[0][0] == placement_char_array[2][0]))
+    end
+  end
+
   def valid_placement?(ship, placement)
     placement_chared = split_array(placement)
 
-    (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && ((horizontal_check(placement_chared) && vertical_check(placement_chared)) == false) && (placement.all? {|coordinate| @cells[coordinate].empty?})
+    if diagonal_check(placement_chared) == false
+      false
+    elsif diagonal_check(placement_chared) == true
+      (ship.length == placement.length) && (horizontal_check(placement_chared) || vertical_check(placement_chared)) && (placement.all? {|coordinate| @cells[coordinate].empty?})
+    end
   end
 
   def place(ship, position)
