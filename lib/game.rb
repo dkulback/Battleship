@@ -31,19 +31,29 @@ class Game
     user_cruiser = gets.chomp.upcase.split
     @player_board.valid_placement?(@cruiser, user_cruiser)
     until @player_board.valid_placement?(@cruiser, user_cruiser) == true
-      puts "Invalid placement. Please enter valid placement for your cruiser(3 coordinates)\n>"
+      puts "Invalid placement. Please enter valid placement for your cruiser(3 coordinates) \n>"
       user_cruiser = gets.chomp.upcase.split
       @player_board.valid_placement?(@cruiser, user_cruiser)
     end
     @player_board.place(@cruiser, user_cruiser)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 545bf170c385bcada50e61d7679be5952698b392
 
     puts "Now place your submarine(2 coordinates)"
+
     user_submarine = gets.chomp.upcase.split
+    @player_board.valid_placement?(@submarine, user_submarine)
     until @player_board.valid_placement?(@submarine, user_submarine) == true
-      puts "Invalid placement. Please enter valid placement for your cruiser(3 coordinates)\n>"
+      puts "Invalid placement. Please enter valid placement for your cruiser(2 coordinates) \n>"
       user_submarine = gets.chomp.upcase.split
+      @player_board.valid_placement?(@submarine, user_submarine)
     end
+    @player_board.place(@submarine, user_submarine)
+
+    puts "Great position.\n #{@player_board.render(true)}"
+
   end
 
 
@@ -57,13 +67,29 @@ class Game
     elsif ship.length == 3
       valid_cruiser_placements.sample(1).flatten
     end
-    # valid_random_position = @computer_board.cells.keys.sample(ship.length)
-    #
-    # until @computer_board.valid_placement?(ship, valid_random_position) == true
-    #   valid_random_position =  @computer_board.cells.keys.sample(ship.length)
-    #
-    #   puts valid_random_position
-    # end
-    # valid_random_position
+
+  end
+
+  def generator
+  comp_cruiser = valid_placement_creator(@cruiser)
+  @computer_board.valid_placement?(@cruiser, comp_cruiser)
+  until @computer_board.valid_placement?(@cruiser, comp_cruiser) == true
+    comp_cruiser = valid_placement_creator(@cruiser)
+    @computer_board.valid_placement?(@cruiser, comp_cruiser)
+  end
+  @computer_board.place(@cruiser, comp_cruiser)
+
+  comp_sub = valid_placement_creator(@submarine)
+  @computer_board.valid_placement?(@submarine, comp_sub)
+  until @computer_board.valid_placement?(@submarine, comp_sub) == true
+    comp_sub = valid_placement_creator(@submarine)
+    @computer_board.valid_placement?(@submarine, comp_sub)
+  end
+  @computer_board.place(@submarine, comp_sub)
+  end
+
+  def turn
+
+
   end
 end

@@ -7,3 +7,4 @@ game = Game.new
 
 
 game.welcome_message
+game.generator

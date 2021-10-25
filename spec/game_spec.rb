@@ -23,4 +23,10 @@ RSpec.describe "it is a computer board" do
     expect(computer_board.valid_placement?(submarine, y)).to eq(true)
   end
 
+  describe '#turn' do
+    it 'creates player turns' do
+    expect(@computer_board).to eq(0)
+    end
+  end
+
 end
