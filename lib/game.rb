@@ -29,10 +29,14 @@ class Game
     puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n #{@player_board.render}\nEnter the squares for the Cruiser (3 spaces):\n>"
 
     user_cruiser = gets.chomp.upcase.split
+    @player_board.valid_placement?(@cruiser, user_cruiser)
     until @player_board.valid_placement?(@cruiser, user_cruiser) == true
       puts "Invalid placement. Please enter valid placement for your cruiser(3 coordinates)\n>"
       user_cruiser = gets.chomp.upcase.split
+      @player_board.valid_placement?(@cruiser, user_cruiser)
     end
+    @player_board.place(@cruiser, user_cruiser)
+
 
     puts "Now place your submarine(2 coordinates)"
     user_submarine = gets.chomp.upcase.split
@@ -44,7 +48,7 @@ class Game
 
 
   def valid_placement_creator(ship)
-    valid_sub_placements = [['A1', 'A2'], ['A2', 'A3'], ['A3','A4'], ['B1', 'B2'], ['B2', 'B3'], ['B3','B4'], ['C1', 'D2'], ['C2', 'C3'], ['C3','C4'], ['D1', 'D2'], ['D2', 'D3'], ['D3','D4'], ['A1', 'B1'], ['B1', 'C1'], ['C1','D1'], ['A2', 'B2'], ['B2', 'C2'], ['C2','D2'], ['A3', 'B3'], ['B3', 'C3'], ['C3','D3'], ['A4', 'B4'], ['B4', 'C4'], ['C4','D4']]
+    valid_sub_placements = [['A1', 'A2'], ['A2', 'A3'], ['A3','A4'], ['B1', 'B2'], ['B2', 'B3'], ['B3','B4'], ['C1', 'C2'], ['C2', 'C3'], ['C3','C4'], ['D1', 'D2'], ['D2', 'D3'], ['D3','D4'], ['A1', 'B1'], ['B1', 'C1'], ['C1','D1'], ['A2', 'B2'], ['B2', 'C2'], ['C2','D2'], ['A3', 'B3'], ['B3', 'C3'], ['C3','D3'], ['A4', 'B4'], ['B4', 'C4'], ['C4','D4']]
 
     valid_cruiser_placements = battleship_array= [["A2", "A3", "A4"], [ "B2", "B3","B4"], [ "C2", "C3","C4"], [ "D2", "D3","D4"], ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"], ["A4", "B4", "C4"], ["A2", "A3", "A4"], ["B2", "B3", "B4"], [ "C2", "C3", "C4"], [ "D2", "D3", "D4"], [ "B1", "C1", "D1"], [ "B2", "C2", "D2"], [ "B3", "C3", "D3"], ["B4", "C4", "D4"]]
 
