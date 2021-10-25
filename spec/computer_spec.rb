@@ -11,12 +11,16 @@ RSpec.describe "it is a computer board" do
     expect(@computer).to be_a(Computer)
   end
 
-  it 'places ships at random' do
-    @computer = Computer.new
-    @cruiser = Ship.new("Cruiser", 3)
+  it 'creates valid placement' do
+    computer = Computer.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    computer_board = Board.new
 
-    @computer.random_ships
-    expect(@computer.include?(cruiser)).to eq(cruiser)
+    x = computer.valid_placement_creator(cruiser)
+    y = computer.valid_placement_creator(submarine)
+    expect(computer_board.valid_placement?(cruiser, x)).to eq(true)
+    expect(computer_board.valid_placement?(submarine, y)).to eq(true)
   end
 
 end

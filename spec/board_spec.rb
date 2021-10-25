@@ -9,6 +9,7 @@ RSpec.describe Board do
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
   end
+
   it 'exists' do
     expect(@board).to be_an_instance_of(Board)
   end
@@ -58,7 +59,7 @@ RSpec.describe Board do
 
     it 'checks that coordinates are not diagonal' do
       expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to be(false)
-      expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to be(false)
+      expect(@board.valid_placement?(@submarine, ["C2", "D4"])).to be(false)
     end
 
     it 'checks for no overlapping ships' do
