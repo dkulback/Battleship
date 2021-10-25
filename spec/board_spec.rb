@@ -50,6 +50,14 @@ RSpec.describe Board do
       expect(@board.vertical_check(example_2)).to eq(false)
     end
 
+    it '#diagonal_check' do
+       example_1 = [["C", "2"], ["D", "4"]]
+       example_2 = [["A", "1"], ["B", "2"], ["D", "3"]]
+
+       expect(@board.diagonal_check(example_1)).to eq(false)
+       expect(@board.diagonal_check(example_2)).to eq(false)
+    end
+
     it 'checks if coordinates are not consecutive' do
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to be(false)
       expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to be(false)
@@ -59,7 +67,7 @@ RSpec.describe Board do
 
     it 'checks that coordinates are not diagonal' do
       expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to be(false)
-      expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to be(false)
+      expect(@board.valid_placement?(@submarine, ["C2", "D4"])).to be(false)
     end
 
     it 'checks for no overlapping ships' do
