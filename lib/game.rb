@@ -5,13 +5,17 @@ class Game
   attr_reader :player_board,
               :computer_board,
               :cruiser,
-              :submarine
+              :submarine,
+              :comp_cruiser,
+              :comp_submarine
 
   def initialize
     @player_board = Board.new
     @computer_board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @cruiser_2 = Ship.new("Cruiser", 3)
+    @submarine_2 = Ship.new("Submarine", 2)
   end
 
   def welcome_message
@@ -22,8 +26,18 @@ class Game
         start_game
       elsif response == "q"
         puts "Game ending.."
+        exit 
       end
   end
+
+  def render_boards
+    puts "-----------COMPUTER BOARD-------------"
+    puts @computer_board.render(true)
+    puts "-----------PLAYER BOARD---------------"
+    puts @player_board.render(true)
+    puts "=" * 60
+  end
+
 
   def start_game
     puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n #{@player_board.render}\nEnter the squares for the Cruiser (3 spaces):\n>"
@@ -36,10 +50,7 @@ class Game
       @player_board.valid_placement?(@cruiser, user_cruiser)
     end
     @player_board.place(@cruiser, user_cruiser)
-<<<<<<< HEAD
 
-=======
->>>>>>> 545bf170c385bcada50e61d7679be5952698b392
 
     puts "Now place your submarine(2 coordinates)"
 
@@ -52,10 +63,71 @@ class Game
     end
     @player_board.place(@submarine, user_submarine)
 
-    puts "Great position.\n #{@player_board.render(true)}"
-
+    render_boards
+    # puts "Great position.\n #{@player_board.render(true)}"
   end
 
+  def turns
+    until (@cruiser.sunk? && @submarine.sunk?) || (@cruiser_2.sunk? && @submarine_2.sunk?)
+      puts "Your turn to FIRE!"
+
+      user_fire = gets.chomp.upcase
+      until @computer_board.valid_coordinate?(user_fire) == true
+        puts "Please enter a valid coordinate"
+        user_fire = gets.chomp.upcase
+      end
+      @computer_board.fire(user_fire)
+
+      puts "Computer will fire at you."
+      comp_fire = @player_board.cells.keys.sample
+      until @player_board.cells[comp_fire].fired_upon? == false
+        comp_fire = @player_board.cells.keys.sample
+      end
+      @player_board.fire(comp_fire)
+
+      if @computer_board.cells[user_fire].render == "M"
+        puts "Your shot at #{user_fire} was a miss."
+      elsif @computer_board.cells[user_fire].render == "H"
+        puts "Your shot at #{user_fire} was a hit!."
+      elsif @computer_board.cells[user_fire].render == "X"
+        puts "You sunk my battleship!"
+      end
+
+      if @player_board.cells[comp_fire].render == "M"
+        puts "My shot at #{comp_fire} was a miss."
+      elsif @player_board.cells[comp_fire].render == "H"
+        puts "My shot at #{comp_fire} was a hit!."
+      elsif @player_board.cells[comp_fire].render == "X"
+        puts "I sunk your battleship!"
+      end
+      render_boards
+    end
+  end
+
+  def game_over
+    if @cruiser.sunk? && @submarine.sunk?
+      puts "HAHA I win you suck"
+      # puts "Would you like to play again?"
+      # puts "Enter p to play again. Enter q to quit"
+      # response = gets.chomp.downcase
+      #   if response == "p"
+      #     start_game
+      #   elsif response == "q"
+      #     puts "Game ending.."
+      #   end
+
+    elsif @cruiser_2.sunk? && @submarine_2.sunk?
+      puts "Oh woooooww youre awesome. Would you like a cookie?"
+      # puts "Would you like to play again?"
+      # puts "Enter p to play. Enter q to quit"
+      # response = gets.chomp.downcase
+      #   if response == "p"
+      #     start_game
+      #   elsif response == "q"
+      #     puts "Game ending.."
+      #   end
+    end
+  end
 
   def valid_placement_creator(ship)
     valid_sub_placements = [['A1', 'A2'], ['A2', 'A3'], ['A3','A4'], ['B1', 'B2'], ['B2', 'B3'], ['B3','B4'], ['C1', 'C2'], ['C2', 'C3'], ['C3','C4'], ['D1', 'D2'], ['D2', 'D3'], ['D3','D4'], ['A1', 'B1'], ['B1', 'C1'], ['C1','D1'], ['A2', 'B2'], ['B2', 'C2'], ['C2','D2'], ['A3', 'B3'], ['B3', 'C3'], ['C3','D3'], ['A4', 'B4'], ['B4', 'C4'], ['C4','D4']]
@@ -67,29 +139,26 @@ class Game
     elsif ship.length == 3
       valid_cruiser_placements.sample(1).flatten
     end
-
   end
 
   def generator
-  comp_cruiser = valid_placement_creator(@cruiser)
-  @computer_board.valid_placement?(@cruiser, comp_cruiser)
-  until @computer_board.valid_placement?(@cruiser, comp_cruiser) == true
-    comp_cruiser = valid_placement_creator(@cruiser)
-    @computer_board.valid_placement?(@cruiser, comp_cruiser)
-  end
-  @computer_board.place(@cruiser, comp_cruiser)
+    comp_cruiser = valid_placement_creator(@cruiser_2)
+    @computer_board.valid_placement?(@cruiser_2, comp_cruiser)
 
-  comp_sub = valid_placement_creator(@submarine)
-  @computer_board.valid_placement?(@submarine, comp_sub)
-  until @computer_board.valid_placement?(@submarine, comp_sub) == true
-    comp_sub = valid_placement_creator(@submarine)
-    @computer_board.valid_placement?(@submarine, comp_sub)
-  end
-  @computer_board.place(@submarine, comp_sub)
-  end
+    until @computer_board.valid_placement?(@cruiser_2, comp_cruiser) == true
+      comp_cruiser = valid_placement_creator(@cruiser_2)
+      @computer_board.valid_placement?(@cruiser_2, comp_cruiser)
+    end
+    @computer_board.place(@cruiser_2, comp_cruiser)
 
-  def turn
+    comp_sub = valid_placement_creator(@submarine_2)
+    @computer_board.valid_placement?(@submarine_2, comp_sub)
 
+    until @computer_board.valid_placement?(@submarine_2, comp_sub) == true
+      comp_sub = valid_placement_creator(@submarine_2)
+      @computer_board.valid_placement?(@submarine_2, comp_sub)
+    end
+    @computer_board.place(@submarine_2, comp_sub)
 
   end
 end

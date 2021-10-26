@@ -24,9 +24,8 @@ RSpec.describe "it is a computer board" do
   end
 
   describe '#turn' do
-    it 'creates player turns' do
-    expect(@computer_board).to eq(0)
+    xit 'creates computer board' do
+      expect(@computer_board).to be_an_instance_of(Board)
     end
   end
-
 end
