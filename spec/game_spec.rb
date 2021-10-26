@@ -23,4 +23,9 @@ RSpec.describe "it is a computer board" do
     expect(computer_board.valid_placement?(submarine, y)).to eq(true)
   end
 
+  describe '#turn' do
+    xit 'creates computer board' do
+      expect(@computer_board).to be_an_instance_of(Board)
+    end
+  end
 end
