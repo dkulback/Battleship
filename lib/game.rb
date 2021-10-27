@@ -20,17 +20,13 @@ class Game
 
   def welcome_message
     puts "Welcome to"
-    puts "   ___       __  __  __        __   _
-  / _ )___ _/ /_/ /_/ /__ ___ / /  (_)__
- / _  / _ `/ __/ __/ / -_|_-</ _ \/ / _ \
-/____/\_,_/\__/\__/_/\__/___/_//_/_/ .__/
-                                  /_/    "
+    puts "BATTLESHIP"
     puts "Enter p to play. Enter q to quit"
     response = gets.chomp.downcase
       if response == "p"
         start_game
       elsif response == "q"
-        puts "Game ending.."
+        puts "Game ending..."
         exit
       end
   end
@@ -43,7 +39,6 @@ class Game
     puts "=" * 60
   end
 
-
   def start_game
     puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n#{@player_board.render}\nEnter the squares for the Cruiser (3 spaces). \nExample: a1 b1 c1"
     user_cruiser = gets.chomp.upcase.split.sort
@@ -54,8 +49,7 @@ class Game
       user_cruiser = gets.chomp.upcase.split.sort
       @player_board.valid_placement?(@cruiser, user_cruiser)
     end
-    @player_board.place(@cruiser, user_cruiser)
-
+      @player_board.place(@cruiser, user_cruiser)
 
     puts "Now place your submarine(2 coordinates)"
 
@@ -66,9 +60,8 @@ class Game
       user_submarine = gets.chomp.upcase.split.sort
       @player_board.valid_placement?(@submarine, user_submarine)
     end
-    @player_board.place(@submarine, user_submarine)
-
-    render_boards
+      @player_board.place(@submarine, user_submarine)
+      render_boards
   end
 
   def user_turn_fire
@@ -84,8 +77,8 @@ class Game
       end
       user_fire = gets.chomp.upcase
     end
-    @computer_board.fire(user_fire)
 
+    @computer_board.fire(user_fire)
 
     if @computer_board.cells[user_fire].render == "M"
       puts "Your shot at #{user_fire} was a miss."
@@ -98,12 +91,13 @@ class Game
 
   def computer_fire
     puts "Computer will fire at you."
+
     comp_fire = @player_board.cells.keys.sample
     until @player_board.cells[comp_fire].fired_upon? == false
       comp_fire = @player_board.cells.keys.sample
     end
-    @player_board.fire(comp_fire)
 
+    @player_board.fire(comp_fire)
     if @player_board.cells[comp_fire].render == "M"
       puts "My shot at #{comp_fire} was a miss."
     elsif @player_board.cells[comp_fire].render == "H"
@@ -115,18 +109,15 @@ class Game
 
   def turns
     until (@cruiser.sunk? && @submarine.sunk?) || (@cruiser_2.sunk? && @submarine_2.sunk?)
-
       user_turn_fire
       computer_fire
       render_boards
-
     end
   end
 
   def game_over
     if @cruiser.sunk? && @submarine.sunk?
-      puts "HAHA I win you suck"
-
+      puts "HAHA I win."
     elsif @cruiser_2.sunk? && @submarine_2.sunk?
       puts "Oh woooooww youre awesome. Would you like a cookie?"
     end
@@ -144,7 +135,7 @@ class Game
     end
   end
 
-  def generator
+  def comp_ship_generator
     comp_cruiser = valid_placement_creator(@cruiser_2)
     @computer_board.valid_placement?(@cruiser_2, comp_cruiser)
 
@@ -161,7 +152,6 @@ class Game
       comp_sub = valid_placement_creator(@submarine_2)
       @computer_board.valid_placement?(@submarine_2, comp_sub)
     end
-    @computer_board.place(@submarine_2, comp_sub)
-
+      @computer_board.place(@submarine_2, comp_sub)
   end
 end
