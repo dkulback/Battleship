@@ -69,7 +69,6 @@ class Game
     @player_board.place(@submarine, user_submarine)
 
     render_boards
-    # puts "Great position.\n #{@player_board.render(true)}"
   end
 
   def user_turn_fire
@@ -86,11 +85,7 @@ class Game
       user_fire = gets.chomp.upcase
     end
     @computer_board.fire(user_fire)
-    # if @computer_board.cells[user_fire].fired_upon? == false
-    #   puts "!!!!!!You already fired at this coordinate, please pick another one!!!!!!!!!!!"
-    # elsif @computer_board.cells[user_fire].fired_upon? == false
-    #   @computer_board.fire(user_fire)
-    # end
+
 
     if @computer_board.cells[user_fire].render == "M"
       puts "Your shot at #{user_fire} was a miss."
@@ -125,47 +120,15 @@ class Game
       computer_fire
       render_boards
 
-      # if @computer_board.cells[user_fire].render == "M"
-      #   puts "Your shot at #{user_fire} was a miss."
-      # elsif @computer_board.cells[user_fire].render == "H"
-      #   puts "Your shot at #{user_fire} was a hit!."
-      # elsif @computer_board.cells[user_fire].render == "X"
-      #   puts "You sunk my battleship!"
-      # end
-
-      # if @player_board.cells[comp_fire].render == "M"
-      #   puts "My shot at #{comp_fire} was a miss."
-      # elsif @player_board.cells[comp_fire].render == "H"
-      #   puts "My shot at #{comp_fire} was a hit!."
-      # elsif @player_board.cells[comp_fire].render == "X"
-      #   puts "I sunk your battleship!"
-      # end
-      # render_boards
     end
   end
 
   def game_over
     if @cruiser.sunk? && @submarine.sunk?
       puts "HAHA I win you suck"
-      # puts "Would you like to play again?"
-      # puts "Enter p to play again. Enter q to quit"
-      # response = gets.chomp.downcase
-      #   if response == "p"
-      #     start_game
-      #   elsif response == "q"
-      #     puts "Game ending.."
-      #   end
 
     elsif @cruiser_2.sunk? && @submarine_2.sunk?
       puts "Oh woooooww youre awesome. Would you like a cookie?"
-      # puts "Would you like to play again?"
-      # puts "Enter p to play. Enter q to quit"
-      # response = gets.chomp.downcase
-      #   if response == "p"
-      #     start_game
-      #   elsif response == "q"
-      #     puts "Game ending.."
-      #   end
     end
   end
 
