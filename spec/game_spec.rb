@@ -4,6 +4,7 @@ require './lib/board'
 require './lib/game'
 
 RSpec.describe "it is a computer board" do
+
   it 'creates a computer set up' do
     @game = Game.new
     @cruiser = Ship.new("Cruiser", 3)
@@ -11,6 +12,11 @@ RSpec.describe "it is a computer board" do
     expect(@game).to be_a(Game)
   end
 
+  it 'computer board exists' do
+    computer_board = Board.new
+
+    expect(computer_board).to be_an_instance_of(Board)
+  end
   it 'creates valid placement' do
     game = Game.new
     cruiser = Ship.new("Cruiser", 3)
@@ -24,8 +30,5 @@ RSpec.describe "it is a computer board" do
   end
 
   describe '#turn' do
-    xit 'creates computer board' do
-      expect(@computer_board).to be_an_instance_of(Board)
-    end
   end
 end
