@@ -12,12 +12,15 @@ RSpec.describe "it is a computer board" do
     expect(@game).to be_a(Game)
   end
 
-  it 'computer board exists' do
+  it 'checks board exist' do
     computer_board = Board.new
+    player_board = Board.new
 
     expect(computer_board).to be_an_instance_of(Board)
+    expect(player_board).to be_an_instance_of(Board)
   end
-  it 'creates valid placement' do
+
+  it '#valid_placement_creator' do
     game = Game.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
