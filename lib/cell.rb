@@ -43,5 +43,4 @@ class Cell
       "X"
     end
   end
-
 end

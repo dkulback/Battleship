@@ -28,6 +28,8 @@ class Game
       elsif response == "q"
         puts "Game ending..."
         exit
+      else
+        exit 
       end
   end
 
@@ -133,7 +135,7 @@ class Game
     elsif ship.length == 3
       valid_cruiser_placements.sample(1).flatten
     end
-    ## We know this works it just takes forever to test 
+    ## We know this works it just takes forever to test
     # valid_random_position = @computer_board.cells.keys.sample(ship.length)
     #
     # until @computer_board.valid_placement?(ship, valid_random_position) == true
