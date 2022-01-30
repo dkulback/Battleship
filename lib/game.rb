@@ -29,7 +29,7 @@ class Game
         puts "Game ending..."
         exit
       else
-        exit 
+        exit
       end
   end
 
@@ -67,8 +67,8 @@ class Game
   end
 
   def user_turn_fire
-    puts "Bad Person: TRY TO SINK ALL OF MY SHIPS IF YOU CAN MUAHAHAHA!"
-    puts "Pick the coordinate of the bad guy that you want to fire at!"
+    puts "TRY TO SINK ALL OF MY SHIPS!"
+    puts "Pick the coordinate that you want to fire at!"
 
     user_fire = gets.chomp.upcase
     until @computer_board.valid_coordinate?(user_fire) == true && @computer_board.cells[user_fire].fired_upon? == false
@@ -121,7 +121,7 @@ class Game
     if @cruiser.sunk? && @submarine.sunk?
       puts "HAHA I win."
     elsif @cruiser_2.sunk? && @submarine_2.sunk?
-      puts "Oh woooooww youre awesome. Would you like a cookie?"
+      puts "You win!"
     end
   end
 
